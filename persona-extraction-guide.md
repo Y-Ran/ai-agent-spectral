@@ -1,6 +1,8 @@
 # 从角色素材到人格配置：通用提取指南
 
 > 适用场景：拥有某虚拟角色的台词、剧情文本或人设资料，需要生成一份贴合人设的双模态人格配置文件。
+>
+> 完整实例参考：[persona-extraction-demo-wuthering-waves.md](persona-extraction-demo-wuthering-waves.md)（基于《鸣潮》角色爱弥斯的提取过程）
 
 ## 总览
 
@@ -186,7 +188,13 @@
 | 角色边界 | 验证知识边界是否守住 | 问及角色不应了解的话题 |
 | 压力场景 | 验证降级是否正确 | 涉及安全性的高风险请求 |
 
-也可以使用本项目的自动对话测试工具 `testing/persona_test.py` 批量跑多轮对话。
+也可以使用本项目的自动对话测试工具批量跑多轮对话：
+
+```bash
+python testing/persona_test.py --persona personas/[角色名]-persona-prompt.md --rounds 10
+```
+
+测试报告输出到 `testing/reports/`，包含完整对话记录和 7 个评估维度覆盖表。
 
 ### 4.2 调优方向
 
@@ -200,7 +208,7 @@
 
 ### 4.3 迭代策略
 
-1. 先用 3-5 个测试 prompt 跑一轮（或使用 `persona_test.py --rounds 5`）
+1. 先用 3-5 个测试 prompt 跑一轮（或使用 `python testing/persona_test.py --persona personas/xxx.md --rounds 5`）
 2. 标注"出戏"或"不自然"的位置
 3. 回到 Phase 2 补充或修正相应的规则
 4. 重新生成 Phase 3 的对应段落
@@ -217,4 +225,10 @@
 生成一份 [角色名] 的人格配置文件，输出到 personas/[角色名]-persona-prompt.md。
 
 角色素材：[粘贴台词/人设文本，或提供文件路径]
+```
+
+生成后运行自动测试验证效果：
+
+```bash
+python testing/persona_test.py --persona personas/[角色名]-persona-prompt.md --rounds 10
 ```
