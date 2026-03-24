@@ -1,6 +1,6 @@
 # AI Agent Spectral
 
-本项目管理 Claude Code 的人格配置文件及自动对话测试工具。
+本项目管理 Codex 的人格配置文件及自动对话测试工具。
 
 ## 项目结构
 
